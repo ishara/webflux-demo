@@ -12,9 +12,9 @@ public class City {
 	@Id
 	private String id;
 
-	private String name;
+	public String name;
 
-	private String country;
+	public String country;
 
 	public City(String name, String country) {
 		this.name = name;
@@ -35,5 +35,13 @@ public class City {
 
 	public void setCountry(String country) {
 		this.country = country;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 }

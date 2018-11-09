@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Reactive SW-API</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}" type="text/css"/>
+</head>
+
+<body>
+<h2>The reactive universe</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Movie</th>
+        <th>Episode</th>
+        <th>Release Date</th>
+    </tr>
+    </thead>
+    <tbody th:remove="all-but-first">
+    <!--/*@thymesVar id="cities" type="com.example.demo.City[]"*/-->
+    <tr th:each="movie : ${cities}" class="movie-row">
+        <td th:text="${movie.getId()}" class="movie-title-cell">Return of the Jedi</td>
+        <td th:text="${movie.name}" class="episode-number-cell">6</td>
+        <td th:text="${movie.country}" class="episode-number-cell">6</td>
+
+    </tr>
+    <tr class="movie-row">
+        <td class="movie-title-cell">Return of the Jedi</td>
+        <td class="episode-number-cell">6</td>
+        <td class="episode-number-cell">6</td>
+
+    </tr>
+    </tbody>
+</table>
+
+</body>
+
+</html>

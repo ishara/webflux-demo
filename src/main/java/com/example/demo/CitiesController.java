@@ -1,12 +1,10 @@
 package com.example.demo;
 
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author Madhura Bhave
@@ -20,15 +18,23 @@ public class CitiesController {
 		this.repository = repository;
 	}
 
-	@GetMapping("/cities/{id}")
+//	@RequestMapping("/")
+//	public Rendering index(Model model) {
+////		model.addAttribute("cities", new ReactiveDataDriverContextVariable(all()));
+//		return Rendering.view("index")
+//                .modelAttribute("cities", new ReactiveDataDriverContextVariable(all()))
+//                .build();
+//	}
+
+	@RequestMapping("/cities/{id}")
 	public Mono<City> findById(@PathVariable String id) {
 		return this.repository.findById(id);
 	}
 
-	@GetMapping(value = "/cities", produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/cities")
 	public Flux<Object> all() {
 		return this.repository.findAll()
 				.filter(c -> c.getCountry().equals("USA"))
-				.map(City::getName);
+				.map(city -> city);
 	}
 }
